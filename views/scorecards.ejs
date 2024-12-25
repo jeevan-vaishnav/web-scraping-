@@ -1,18 +1,24 @@
 <% if (Array.isArray(scorecards) && scorecards.length > 0) { %>
     <% scorecards.forEach((scorecard) => { %>
         <div class="scorecard">
-            <% scorecard %>
+            <!-- Match Details -->
             <h1><%= scorecard.matchNumber %></h1>
+            <h2>Match Title: <%= scorecard.matchTitle %></h2>
+            <h1>Test <%= scorecard.scores %></h1>
+            <!-- Score Table -->
             <table>
                 <thead>
                     <tr>
                         <th>Batsman</th>
                         <th>Runs</th>
                         <th>Balls</th>
+                        <th>Fours</th>
+                        <th>Sixes</th>
+                        <th>Strike Rate</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% if (Array.isArray(scorecard?.scores) && scorecard?.scores?.length > 0) { %>
+                    <% if (Array.isArray(scorecard.scores) && scorecard.scores.length > 0) { %>
                         <% scorecard.scores.forEach((score) => { %>
                             <tr>
                                 <td><%= score.batsmanName %></td>
@@ -21,17 +27,19 @@
                                 <td><%= score.fours %></td>
                                 <td><%= score.sixes %></td>
                                 <td><%= score.strikeRate %></td>
-
-
                             </tr>
                         <% }) %>
                     <% } else { %>
-                        <tr><td colspan="3">No scores available</td></tr>
+                        <!-- No Scores Available -->
+                        <tr>
+                            <td colspan="6">No scores available</td>
+                        </tr>
                     <% } %>
                 </tbody>
             </table>
         </div>
     <% }) %>
 <% } else { %>
+    <!-- No Data Available -->
     <p>No data available</p>
 <% } %>
